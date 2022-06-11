@@ -1,4 +1,4 @@
-# SpeakDroid
+# SpeakDroid 🔉
 Python imp. of Neural network TTS in yandex translator
 
 ![image](https://user-images.githubusercontent.com/52743561/173181931-1ecebfa0-831c-42c2-b710-26538e554e90.png)
