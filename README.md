@@ -34,3 +34,9 @@ SpeakDroid.demo() # Быстрый тест работы
 driver=SpeakDroid.SpeakDriver()
 driver.Say("Я хороший, я хороший")
 driver.exit()
+
+driver=SpeakDroid.SpeakDriver(visible=True,logging=True) # Делать все действия в окне
+driver.Say("Я наглядно хороший, я наглядно хороший")
+driver.exit()
+```
+
