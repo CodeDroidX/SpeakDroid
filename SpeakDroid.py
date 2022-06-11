@@ -1,10 +1,10 @@
+print("\nЗагрузка SpeakDroid")
+print("Привет от создателя https://github.com/CodeDroidX\n")
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 import time
-print("\nЗагрузка SpeakDroid")
-print("Привет от создателя https://github.com/CodeDroidX\n")
 
 class SpeakDriver:
     def __init__(self,visible=False,logging=False):
