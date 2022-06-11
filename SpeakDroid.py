@@ -6,6 +6,22 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 import time
 
+def split_text(t):
+    all_sent=t.split(".")
+    element=""
+    dat=[]
+    for i in all_sent:
+        if len(element+i)<250:
+            element+=i+"."
+        else:
+            dat.append(element)
+            element=i+"."
+    dat.append(element)
+    dat[-1]=dat[-1][:-1]
+    for i in dat:
+        print(len(i))
+    return dat
+
 class SpeakDriver:
     def __init__(self,visible=False,logging=False):
         options = webdriver.ChromeOptions()
@@ -20,27 +36,29 @@ class SpeakDriver:
         self.driver.get("https://translate.yandex.ru/")
     def Say(self,text: str):
         assert type(text)==type("string")
-        ActionChains(self.driver)\
-            .key_down(Keys.CONTROL)\
-            .send_keys("a")\
-            .key_up(Keys.CONTROL)\
-            .key_down(Keys.DELETE)\
-            .key_up(Keys.DELETE)\
-            .perform()
+        for i in split_text(text):
+            ActionChains(self.driver)\
+                .key_down(Keys.CONTROL)\
+                .send_keys("a")\
+                .key_up(Keys.CONTROL)\
+                .key_down(Keys.DELETE)\
+                .key_up(Keys.DELETE)\
+                .perform()
 
-        ActionChains(self.driver)\
-            .send_keys(text)\
-            .perform()
+            ActionChains(self.driver)\
+                .send_keys(i)\
+                .perform()
 
-        time.sleep(0.4)
-        ActionChains(self.driver)\
-            .key_down(Keys.ALT)\
-            .send_keys("v")\
-            .key_up(Keys.ALT)\
-            .perform()
-        button=self.driver.find_element(By.ID,"textSpeaker")
-        while button.get_attribute("class")!="boxButton boxButton_tts button button_view_clear button_size_l button_icn button_round state-silent":
-            time.sleep(0.01)
+            time.sleep(0.4)
+            ActionChains(self.driver)\
+                .key_down(Keys.ALT)\
+                .send_keys("v")\
+                .key_up(Keys.ALT)\
+                .perform()
+            button=self.driver.find_element(By.ID,"textSpeaker")
+            #time.sleep(0.02*len())
+            while button.get_attribute("class")!="boxButton boxButton_tts button button_view_clear button_size_l button_icn button_round state-silent":
+                time.sleep(0.01)
     def exit(self):
         self.driver.quit()
 if __name__=="__main__":
