@@ -20,6 +20,7 @@ Python imp. of Neural network TTS in yandex translator
 > 
 > Но как это автоматизировать?
 ### Взять Selenium, python и мой драйвер.
+upd: теперь еще и с поддержкой текста неограниченной длинны)
 # 1 Шаг
 ```cmd
 pip install selenium
